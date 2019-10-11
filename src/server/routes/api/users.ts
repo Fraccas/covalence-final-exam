@@ -1,23 +1,22 @@
 import { Router } from 'express';
 import db from '../../db';
-import { RequestHandler } from 'express-serve-static-core';
-
 
 const router = Router();
 
-const isLogged: RequestHandler = (req: any, res, next) => {
-    if (!req.user) {
-        return res.sendStatus(401);
-    } else {
-        return next();
-    }
-}
-
-
-// get all users
-router.get('/', async (req, res) => {
+// get user by id
+router.get('/:id', async (req, res) => {
     try {
-        res.json(await db.Users.getUsers());
+        res.json(await db.Users.getUserById(req.params.id));
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+// create new user
+router.post('/new', async (req, res) => {
+    try {
+        res.json(await db.Users.createUser(req.body.name, req.body.email, req.body.password));
     } catch (e) {
         console.log(e);
         res.sendStatus(500);
