@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { json, User, SetAccessToken } from '../../utils/api';
-import { browserHistory } from 'react-router';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps, Route } from 'react-router-dom';
+import { RouteChildrenProps } from 'react-router';
 
 export default class Login extends React.Component<ILoginProps, ILoginState> {
     constructor(props: ILoginProps) {
@@ -18,7 +18,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
 
     componentDidMount() {
         // user is logged in so push them to books page
-        if (User.userid != null) browserHistory.push('/book/all');
+        if (User.userid != null) this.props.history.push('/');
     }
 
     LoginSubmit = async() => {
@@ -36,7 +36,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
                     SetAccessToken(result.token, { userid: result.userid, role: result.role });
 
                     try {
-                        let path = '/api/users/name' + result.userid;
+                        let path = '/api/users/' + result.userid;
                         let usernameResult = await json(path);
 
                         localStorage.setItem('username', usernameResult[0]['name']);
@@ -83,7 +83,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
     }
 }
 
-export interface ILoginProps extends RouteComponentProps { }
+export interface ILoginProps extends RouteChildrenProps { }
 
 export interface ILoginState {
     email: string, 
