@@ -1,8 +1,8 @@
 import { pool } from './index';
 
-export const getUserById = async (id: number) => {
+export const getUserById = async (id: string) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM users WHERE id = ?', [id], (err, results) => {
+        pool.query('SELECT name FROM users WHERE id = ?', [id], (err, results) => {
             if (err) return reject(err);
             resolve(results);
         });

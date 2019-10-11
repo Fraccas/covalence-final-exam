@@ -20,7 +20,7 @@ export const getTokenById = async (id: number) => {
     });
 }
 
-export const addToken = async (userid: number) => {
+export const addToken = async (userid: string) => {
     return new Promise((resolve, reject) => {
         pool.query('INSERT INTO tokens (userid, token) VALUES (?, "")', [userid], (err, results) => {
             if (err) return reject(err);
