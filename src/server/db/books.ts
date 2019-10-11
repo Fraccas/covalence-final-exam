@@ -1,5 +1,4 @@
 import { pool } from './index';
-import { resolve } from 'dns';
 
 export const getBooks = async () => {
     return new Promise((resolve, reject) => {
@@ -28,8 +27,26 @@ export const addBook = async (categoryid: string, title: string, author: string,
     });
 }
 
+export const deleteBook = async(id: number) => {
+    return new Promise((resolve, reject) => {
+        pool.query('DELETE FROM books WHERE id = ?', [id], (err, results) => {
+            if (err) return reject(err);
+            resolve(results);
+        });
+    });
+}
+
+export const updateBook = async(title: string, price: number, id: number) => {
+    return new Promise((resolve, reject) => {
+        pool.query('UPDATE books SET title = ?, price = ? WHERE id = ?', [title, price, id], (err, results) => {
+            if (err) return reject(err);
+            resolve(results);
+        });
+    });
+}
 
 
 export default {
-    getBooks, getBookById, addBook
+    getBooks, getBookById, addBook,
+    deleteBook, updateBook
 }
