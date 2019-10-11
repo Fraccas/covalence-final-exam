@@ -58,7 +58,8 @@ class ViewBook extends React.Component<BookProps, BookState> {
     }
 
     showUpdate = () => {
-        if (User.role === "admin") return (<button className="btn btn-warning ml-2 mt-3" type="submit"
+        // allow any logged user to edit book for now
+        if (User.role) return (<button className="btn btn-warning ml-2 mt-3" type="submit"
         onClick={() => {this.props.history.push('/book/update/' + this.state.id)}}>  Edit Book  </button>);
     }
 }

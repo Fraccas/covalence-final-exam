@@ -40,7 +40,8 @@ class App extends React.Component {
     }
 
     showAdmin = () => {
-        if (User.role === "admin") return (<li><Link to={'/book/add'} className="nav-link"> Add Book </Link></li>);
+        // let any logged user add books for now
+        if (User.role) return (<li><Link to={'/book/add'} className="nav-link"> Add Book </Link></li>);
     }
 
     showLog = () => {

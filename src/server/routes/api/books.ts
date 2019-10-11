@@ -55,9 +55,9 @@ router.delete('/delete/:id', async (req, res) => {
 });
 
 // update book by id
-router.put('/:id/update', isLogged, async (req, res) => {
+router.put('/:id/update', async (req, res) => {
     try {
-        res.json(await db.Books.updateBook(req.body.title, req.body.author, req.params.id));
+        res.json(await db.Books.updateBook(req.body.title, req.body.price, req.params.id));
     } catch (e) {
         console.log(e);
         res.sendStatus(500);
