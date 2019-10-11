@@ -18,7 +18,7 @@ class AddBook extends React.Component<BookProps, BookState> {
 
     // grab categories from db
     async componentDidMount() {
-        if (!User || User.userid === null || User.role !== 'admin') {
+        if (!User || User.userid === null) {
             this.props.history.replace('/login');
         } else {
             // logged in, get category options

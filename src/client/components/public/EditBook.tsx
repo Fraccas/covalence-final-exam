@@ -31,7 +31,7 @@ class EditBook extends React.Component<BookProps, BookState> {
     }
 
     render () {
-        if (this.state.book && User.role == "admin") {
+        if (this.state.book && User) {
             return (
                 <div className="input-container bg-light m-5 rounded p-4 border shadow">
                     <h2 className="text-center p-2 rounded bg-secondary text-light">Edit Book</h2>
