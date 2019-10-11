@@ -2,7 +2,9 @@ import * as mysql from 'mysql';
 import config from '../config';
 
 import Books from './books';
-// import all others
+import Categories from './categories';
+import AccessTokens from './accesstokens';
+import Users from './users';
 
 export const pool = mysql.createPool(config.mysql);
 
@@ -16,5 +18,5 @@ export const Query = (query: string, values?: Array<string | number>) => {
 }
 
 export default {
-    Books
+    Books, Categories, AccessTokens, Users
 }
