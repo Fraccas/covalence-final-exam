@@ -35,7 +35,7 @@ router.get('/:id', async (req, res) => {
 })
 
 // add new book
-router.post('/new', isLogged, async (req, res) => {
+router.post('/new', async (req, res) => {
     try {
         res.json(await db.Books.addBook(req.body.categoryid, req.body.title, req.body.author, req.body.price));
     } catch (e) {
@@ -45,7 +45,7 @@ router.post('/new', isLogged, async (req, res) => {
 });
 
 // delete book by id
-router.delete('/delete/:id', isLogged, async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
     try {
         res.json(await db.Books.deleteBook(req.params.id));
     } catch (e) {
