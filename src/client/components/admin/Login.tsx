@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { json, User, SetAccessToken } from '../../utils/api';
-import { RouteComponentProps, Link } from 'react-router-dom';
+import { browserHistory } from 'react-router';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
 export default class Login extends React.Component<ILoginProps, ILoginState> {
     constructor(props: ILoginProps) {
@@ -17,7 +18,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
 
     componentDidMount() {
         // user is logged in so push them to books page
-        if (User.userid != null) this.props.history.push('/book/all');
+        if (User.userid != null) browserHistory.push('/book/all');
     }
 
     LoginSubmit = async() => {
